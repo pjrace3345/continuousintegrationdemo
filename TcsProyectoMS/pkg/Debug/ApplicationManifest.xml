@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="TcsProyectoMSType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" ManifestId="745cb20a-3ca9-4bf1-92b1-8fb377285177">
+  <Parameters>
+    <Parameter Name="ClienteService_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="ClienteService_InstanceCount" DefaultValue="-1" />
+  </Parameters>
+  <!-- Importe el elemento ServiceManifest del ServicePackage. Los elementos ServiceManifestName y ServiceManifestVersion 
+       deben coincidir con los atributos Name y Version del elemento ServiceManifest definido en el 
+       archivo ServiceManifest.xml. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ClienteServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ClienteService_ASPNETCORE_ENVIRONMENT]" />
+    </EnvironmentOverrides>
+  </ServiceManifestImport>
+  <DefaultServices>
+    <!-- La sección siguiente crea instancias de tipos de servicio cuando se crea una 
+         instancia de este tipo de aplicación. También puede crear una o varias instancias de tipo de servicio 
+         usando el módulo ServiceFabric de PowerShell.
+         
+         El atributo ServiceTypeName siguiente debe coincidir con el nombre definido en el archivo ServiceManifest.xml importado. -->
+    <Service Name="ClienteService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="ClienteServiceType" InstanceCount="[ClienteService_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+  </DefaultServices>
+</ApplicationManifest>

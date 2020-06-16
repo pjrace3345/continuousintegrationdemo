@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PublishProfile xmlns="http://schemas.microsoft.com/2015/05/fabrictools">
+  <!-- ClusterConnectionParameters permite especificar los parámetros de PowerShell que se usarán para conectarse al clúster de Service Fabric.
+       Los parámetros válidos son todos los que acepte el cmdlet Connect-ServiceFabricCluster.
+       
+       Para un clúster remoto, es necesario especificar los parámetros adecuados para ese clúster específico.
+         Por ejemplo: <ClusterConnectionParameters ConnectionEndpoint="mycluster.westus.cloudapp.azure.com:19000" />
+
+       Ejemplo que muestra los parámetros para un clúster que usa seguridad con certificado:
+       <ClusterConnectionParameters ConnectionEndpoint="mycluster.westus.cloudapp.azure.com:19000"
+                                    X509Credential="true"
+                                    ServerCertThumbprint="0123456789012345678901234567890123456789"
+                                    FindType="FindByThumbprint"
+                                    FindValue="9876543210987654321098765432109876543210"
+                                    StoreLocation="CurrentUser"
+                                    StoreName="My" />
+
+       Ejemplo que muestra los parámetros para un clúster que usa seguridad con Azure Active Directory (AAD):
+       <ClusterConnectionParameters ConnectionEndpoint="mycluster.westus.cloudapp.azure.com:19000"
+                                    AzureActiveDirectory="true"
+                                    ServerCertThumbprint="0123456789012345678901234567890123456789" />
+  -->
+  <ClusterConnectionParameters ConnectionEndpoint="servicefabrictcs.brazilsouth.cloudapp.azure.com:19000" X509Credential="true" ServerCertThumbprint="98DA4A8F47F793DFA4B4DD78CA25461DE9EC29E5" FindType="FindByThumbprint" FindValue="98DA4A8F47F793DFA4B4DD78CA25461DE9EC29E5" StoreLocation="CurrentUser" StoreName="My" />
+  <ApplicationParameterFile Path="..\ApplicationParameters\Cloud.xml" />
+  <CopyPackageParameters CompressPackage="true" />
+</PublishProfile>
